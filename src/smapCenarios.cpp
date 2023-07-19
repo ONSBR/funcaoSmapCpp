@@ -6,7 +6,7 @@ List rodada_cenarios_dias_cpp2(NumericVector modelo, NumericMatrix inicializacao
                                  NumericMatrix precipitacao, NumericMatrix evapotranspiracao,
                                  NumericMatrix Emarg, int numero_dias, int numero_cenarios) {
 
-  int ncols = 14; 
+  int ncols = 18; 
 
   List listaSaida(numero_cenarios);
 
@@ -23,7 +23,7 @@ List rodada_cenarios_dias_cpp2(NumericVector modelo, NumericMatrix inicializacao
     NumericMatrix matrizSaida(numero_dias, ncols);
     colnames(matrizSaida) = CharacterVector::create("Qcalc", "Rsolo", "Rsup", "Rsup2", "Rsub",
                                                   "Es", "Er", "Rec", "Marg", "Ed", "Ed2", "Ed3",
-                                                  "Eb", "Tu");
+                                                  "Eb", "Tu", "Qsup1", "Qsup2", "Qplan", "Qbase");
     for (int idia = 0; idia < numero_dias; idia++) {
 
         matrizSaida(idia, 13) = inicializacao(icenario, 4) / modelo(0); // Eq.19 Manual
@@ -70,8 +70,11 @@ List rodada_cenarios_dias_cpp2(NumericVector modelo, NumericMatrix inicializacao
         matrizSaida(idia, 2) = inicializacao(icenario, 5) + matrizSaida(idia, 5) - matrizSaida(idia, 8) - matrizSaida(idia, 9) -
                             matrizSaida(idia, 11) + std::max(0.0, Rsup_tmp);
         matrizSaida(idia, 3) = std::max(inicializacao(icenario, 3) + matrizSaida(idia, 8) - matrizSaida(idia, 10) - Emarg(icenario, idia), 0.0);
-        matrizSaida(idia, 0) = (matrizSaida(idia, 9) + matrizSaida(idia, 10) + matrizSaida(idia, 11) + matrizSaida(idia, 12)) *
-                            area / 86.4;
+        matrizSaida(idia, 14) = matrizSaida(idia, 9) * area / 86.4;
+        matrizSaida(idia, 15) = matrizSaida(idia, 10) * area / 86.4;
+        matrizSaida(idia, 16) = matrizSaida(idia, 11) * area / 86.4;
+        matrizSaida(idia, 17) = matrizSaida(idia, 12) * area / 86.4;
+        matrizSaida(idia, 0) = matrizSaida(idia, 14) + matrizSaida(idia, 15) + matrizSaida(idia, 16) + matrizSaida(idia, 17);
         
         inicializacao(icenario, 4) = matrizSaida(idia, 1);
         inicializacao(icenario, 5) = matrizSaida(idia, 2);

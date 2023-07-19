@@ -7,13 +7,13 @@ NumericMatrix rodada_varios_dias_cpp2(NumericVector modelo, NumericVector inicia
                                  NumericVector precipitacao, NumericVector evapotranspiracao,
                                  NumericVector Emarg, int numero_dias) {
 
-  int ncols = 14; // Number of columns in the output matrix
+  int ncols = 18; // Number of columns in the output matrix
 
   // Create the output matrix
   NumericMatrix matrizSaida(numero_dias, ncols);
   colnames(matrizSaida) = CharacterVector::create("Qcalc", "Rsolo", "Rsup", "Rsup2", "Rsub",
                                                   "Es", "Er", "Rec", "Marg", "Ed", "Ed2", "Ed3",
-                                                  "Eb", "Tu");
+                                                  "Eb", "Tu", "Qsup1", "Qsup2", "Qplan", "Qbase");
 
   double Capc_tmp = (modelo(3) / 100) * modelo(0);
   double Rsup_tmp = 0;
@@ -78,8 +78,11 @@ NumericMatrix rodada_varios_dias_cpp2(NumericVector modelo, NumericVector inicia
     matrizSaida(idia, 2) = inicializacao(5) + matrizSaida(idia, 5) - matrizSaida(idia, 8) - matrizSaida(idia, 9) -
                            matrizSaida(idia, 11) + std::max(0.0, Rsup_tmp);
     matrizSaida(idia, 3) = std::max(inicializacao(3) + matrizSaida(idia, 8) - matrizSaida(idia, 10) - Emarg(idia), 0.0);
-    matrizSaida(idia, 0) = (matrizSaida(idia, 9) + matrizSaida(idia, 10) + matrizSaida(idia, 11) + matrizSaida(idia, 12)) *
-                           area / 86.4;
+    matrizSaida(idia, 14) = matrizSaida(idia, 9) * area / 86.4;
+    matrizSaida(idia, 15) = matrizSaida(idia, 10) * area / 86.4;
+    matrizSaida(idia, 16) = matrizSaida(idia, 11) * area / 86.4;
+    matrizSaida(idia, 17) = matrizSaida(idia, 12) * area / 86.4;
+    matrizSaida(idia, 0) = matrizSaida(idia, 14) + matrizSaida(idia, 15) + matrizSaida(idia, 16) + matrizSaida(idia, 17);
     
     inicializacao(4) = matrizSaida(idia, 1);
     inicializacao(5) = matrizSaida(idia, 2);
