@@ -12,8 +12,8 @@ NumericMatrix rodada_varios_dias_cpp2(NumericVector modelo, NumericVector inicia
   // Create the output matrix
   NumericMatrix matrizSaida(numero_dias, ncols);
   colnames(matrizSaida) = CharacterVector::create("Qcalc", "Rsolo", "Rsup", "Rsup2", "Rsub",
-                                                  "Es", "Er", "Rec", "Marg", "Ed", "Ed2", "Ed3",
-                                                  "Eb", "Tu", "Qsup1", "Qsup2", "Qplan", "Qbase");
+                                                  "Es", "Er", "Rec", "Marg", "Ed", "Ed3", "Ed2",
+                                                  "Eb", "Tu", "Qsup1", "Qplan", "Qsup2", "Qbase");
 
   double Capc_tmp = (modelo(3) / 100) * modelo(0);
   double Rsup_tmp = 0;

@@ -22,8 +22,8 @@ List rodada_cenarios_dias_cpp2(NumericVector modelo, NumericMatrix inicializacao
   for (int icenario = 0; icenario < numero_cenarios; icenario++){
     NumericMatrix matrizSaida(numero_dias, ncols);
     colnames(matrizSaida) = CharacterVector::create("Qcalc", "Rsolo", "Rsup", "Rsup2", "Rsub",
-                                                  "Es", "Er", "Rec", "Marg", "Ed", "Ed2", "Ed3",
-                                                  "Eb", "Tu", "Qsup1", "Qsup2", "Qplan", "Qbase");
+                                                  "Es", "Er", "Rec", "Marg", "Ed", "Ed3", "Ed2",
+                                                  "Eb", "Tu", "Qsup1", "Qplan", "Qsup2", "Qbase");
     for (int idia = 0; idia < numero_dias; idia++) {
 
         matrizSaida(idia, 13) = inicializacao(icenario, 4) / modelo(0); // Eq.19 Manual
