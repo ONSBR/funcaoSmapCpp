@@ -9,3 +9,11 @@ rodada_cenarios_dias_cpp2 <- function(modelo, inicializacao, area, precipitacao,
     .Call(`_funcaoSmapCpp_rodada_cenarios_dias_cpp2`, modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias, numero_cenarios)
 }
 
+rodada_pmur_cpp <- function(modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias) {
+    .Call(`_funcaoSmapCpp_rodada_pmur_cpp`, modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias)
+}
+
+rodada_pmur_cpp_cenario <- function(modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias, numero_cenarios) {
+    .Call(`_funcaoSmapCpp_rodada_pmur_cpp_cenario`, modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias, numero_cenarios)
+}
+
