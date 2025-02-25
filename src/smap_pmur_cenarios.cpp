@@ -19,6 +19,7 @@ List rodada_pmur_cpp_cenario(NumericVector modelo, NumericMatrix inicializacao, 
 
 	double Capc_tmp = (modelo(3) / 100) * modelo(0);
 	double Rsup_tmp = 0;
+	double Pmur_tmp = (modelo(14) / 100) * Capc_tmp;
 	double capacidade_armazenamento = 0;
 	// Coefficients Ks
 	double K_kts = pow(0.5, 1.0 / modelo(4));
@@ -49,7 +50,7 @@ List rodada_pmur_cpp_cenario(NumericVector modelo, NumericMatrix inicializacao, 
 			  matrizSaida(idia, 5) = 0;
 			}
 
-			if (inicializacao(icenario, 4) > modelo(14)){
+			if (inicializacao(icenario, 4) > Pmur_tmp){
 				if ((precipitacao(icenario, idia) - matrizSaida(idia, 5)) > evapotranspiracao(icenario, idia)) {
 				matrizSaida(idia, 6) = evapotranspiracao(icenario, idia);
 				} else {

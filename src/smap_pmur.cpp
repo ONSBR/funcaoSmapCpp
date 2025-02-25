@@ -17,6 +17,7 @@ NumericMatrix rodada_pmur_cpp(NumericVector modelo, NumericVector inicializacao,
                                                   "Ai");
 
   double Capc_tmp = (modelo(3) / 100) * modelo(0);
+  double Pmur_tmp = (modelo(14) / 100) * Capc_tmp;
   double Rsup_tmp = 0;
   double capacidade_armazenamento = 0;
   // Coefficients Ks
@@ -41,7 +42,7 @@ NumericMatrix rodada_pmur_cpp(NumericVector modelo, NumericVector inicializacao,
       matrizSaida(idia, 5) = 0;
     }
 
-    if (inicializacao(4) > modelo(14)){
+    if (inicializacao(4) > Pmur_tmp){
         if ((precipitacao(idia) - matrizSaida(idia, 5)) > evapotranspiracao(idia)) {
         matrizSaida(idia, 6) = evapotranspiracao(idia);
         } else {
