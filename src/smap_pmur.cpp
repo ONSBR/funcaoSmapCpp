@@ -78,8 +78,8 @@ NumericMatrix rodada_pmur_cpp(NumericVector modelo, NumericVector inicializacao,
     // Calculation of state variables
     
 
-    matrizSaida(idia, 1) = std::min(std::max(inicializacao(4) + precipitacao(idia) - matrizSaida(idia, 5) - matrizSaida(idia, 6) - matrizSaida(idia, 7),
-                                    modelo(14)), modelo(0));
+    matrizSaida(idia, 1) = std::min(inicializacao(4) + precipitacao(idia) 
+                      - matrizSaida(idia, 5) - matrizSaida(idia, 6) - matrizSaida(idia, 7), modelo(0));
     matrizSaida(idia, 4) = inicializacao(6) + matrizSaida(idia, 7) - matrizSaida(idia, 12);
     Rsup_tmp = ((inicializacao(4) + precipitacao(idia) - matrizSaida(idia, 5) - matrizSaida(idia, 6) - matrizSaida(idia, 7)) - modelo(0));
     matrizSaida(idia, 2) = inicializacao(5) + matrizSaida(idia, 5) - matrizSaida(idia, 8) - matrizSaida(idia, 9) -
