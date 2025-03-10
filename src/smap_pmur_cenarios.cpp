@@ -86,8 +86,9 @@ List rodada_pmur_cpp_cenario(NumericVector modelo, NumericMatrix inicializacao, 
 			// Calculation of state variables
 			
 
-			matrizSaida(idia, 1) = std::min(std::max(inicializacao(icenario, 4) + precipitacao(icenario, idia) - matrizSaida(idia, 5) - matrizSaida(idia, 6) - matrizSaida(idia, 7),
-											modelo(14)), modelo(0));
+			matrizSaida(idia, 1) = std::min(inicializacao(icenario, 4) + precipitacao(icenario, idia) - 
+								matrizSaida(idia, 5) - matrizSaida(idia, 6) - matrizSaida(idia, 7),
+								modelo(0));
 			matrizSaida(idia, 4) = inicializacao(icenario, 6) + matrizSaida(idia, 7) - matrizSaida(idia, 12);
 			Rsup_tmp = ((inicializacao(icenario, 4) + precipitacao(icenario, idia) - matrizSaida(idia, 5) - matrizSaida(idia, 6) - matrizSaida(idia, 7)) - modelo(0));
 			matrizSaida(idia, 2) = inicializacao(icenario, 5) + matrizSaida(idia, 5) - matrizSaida(idia, 8) - matrizSaida(idia, 9) -
