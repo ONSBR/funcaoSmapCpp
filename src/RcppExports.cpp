@@ -38,6 +38,33 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// propaga_tv_cpp
+NumericVector propaga_tv_cpp(NumericVector vazao_montante, NumericVector vazao_jusante, double tempo_viagem);
+RcppExport SEXP _funcaoSmapCpp_propaga_tv_cpp(SEXP vazao_montanteSEXP, SEXP vazao_jusanteSEXP, SEXP tempo_viagemSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type vazao_montante(vazao_montanteSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type vazao_jusante(vazao_jusanteSEXP);
+    Rcpp::traits::input_parameter< double >::type tempo_viagem(tempo_viagemSEXP);
+    rcpp_result_gen = Rcpp::wrap(propaga_tv_cpp(vazao_montante, vazao_jusante, tempo_viagem));
+    return rcpp_result_gen;
+END_RCPP
+}
+// propaga_muskingum_cpp
+NumericVector propaga_muskingum_cpp(NumericVector vazao_montante, NumericVector vazao_jusante, int n, NumericVector coeficientes);
+RcppExport SEXP _funcaoSmapCpp_propaga_muskingum_cpp(SEXP vazao_montanteSEXP, SEXP vazao_jusanteSEXP, SEXP nSEXP, SEXP coeficientesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type vazao_montante(vazao_montanteSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type vazao_jusante(vazao_jusanteSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type coeficientes(coeficientesSEXP);
+    rcpp_result_gen = Rcpp::wrap(propaga_muskingum_cpp(vazao_montante, vazao_jusante, n, coeficientes));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rodada_varios_dias_cpp2
 NumericMatrix rodada_varios_dias_cpp2(NumericVector modelo, NumericVector inicializacao, double area, NumericVector precipitacao, NumericVector evapotranspiracao, NumericVector Emarg, int numero_dias);
 RcppExport SEXP _funcaoSmapCpp_rodada_varios_dias_cpp2(SEXP modeloSEXP, SEXP inicializacaoSEXP, SEXP areaSEXP, SEXP precipitacaoSEXP, SEXP evapotranspiracaoSEXP, SEXP EmargSEXP, SEXP numero_diasSEXP) {
@@ -112,6 +139,8 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_funcaoSmapCpp_ponderacao_temporal_cenario_cpp", (DL_FUNC) &_funcaoSmapCpp_ponderacao_temporal_cenario_cpp, 4},
     {"_funcaoSmapCpp_ponderacao_temporal_cpp", (DL_FUNC) &_funcaoSmapCpp_ponderacao_temporal_cpp, 4},
+    {"_funcaoSmapCpp_propaga_tv_cpp", (DL_FUNC) &_funcaoSmapCpp_propaga_tv_cpp, 3},
+    {"_funcaoSmapCpp_propaga_muskingum_cpp", (DL_FUNC) &_funcaoSmapCpp_propaga_muskingum_cpp, 4},
     {"_funcaoSmapCpp_rodada_varios_dias_cpp2", (DL_FUNC) &_funcaoSmapCpp_rodada_varios_dias_cpp2, 7},
     {"_funcaoSmapCpp_rodada_cenarios_dias_cpp2", (DL_FUNC) &_funcaoSmapCpp_rodada_cenarios_dias_cpp2, 8},
     {"_funcaoSmapCpp_rodada_pmur_cpp", (DL_FUNC) &_funcaoSmapCpp_rodada_pmur_cpp, 7},
