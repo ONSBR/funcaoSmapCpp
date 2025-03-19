@@ -9,6 +9,14 @@ ponderacao_temporal_cpp <- function(serie_temporal, kt, kt_max, kt_min) {
     .Call(`_funcaoSmapCpp_ponderacao_temporal_cpp`, serie_temporal, kt, kt_max, kt_min)
 }
 
+propaga_tv_cpp <- function(vazao_montante, vazao_jusante, tempo_viagem) {
+    .Call(`_funcaoSmapCpp_propaga_tv_cpp`, vazao_montante, vazao_jusante, tempo_viagem)
+}
+
+propaga_muskingum_cpp <- function(vazao_montante, vazao_jusante, n, coeficientes) {
+    .Call(`_funcaoSmapCpp_propaga_muskingum_cpp`, vazao_montante, vazao_jusante, n, coeficientes)
+}
+
 rodada_varios_dias_cpp2 <- function(modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias) {
     .Call(`_funcaoSmapCpp_rodada_varios_dias_cpp2`, modelo, inicializacao, area, precipitacao, evapotranspiracao, Emarg, numero_dias)
 }
